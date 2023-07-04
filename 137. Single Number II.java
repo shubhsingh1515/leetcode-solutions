@@ -1,18 +1,13 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        Arrays.sort(nums);
-        int k=0;
-        int idx=0;
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]==nums[idx])
-            k++;
-
-            if(k==3){
-            k=0;
-            idx=i+1;
-            }
-        
-        }
-        return nums[idx];
+     Map<Integer,Integer> m=new HashMap<>();
+      for(int num : nums){
+         m.put(num, m.getOrDefault(num, 0) + 1);
+      }
+      for(int num:nums){
+          if(m.get(num)==1)
+          return num;
+      }
+      return -1;
     }
 }
